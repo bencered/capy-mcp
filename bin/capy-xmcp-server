@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const { spawn } = require("node:child_process");
+const { join } = require("node:path");
+
+const mode = process.argv[2] ?? "stdio";
+
+if (mode !== "http" && mode !== "stdio") {
+  console.error("Usage: capy-xmcp-server [stdio|http]");
+  process.exit(1);
+}
+
+const script = mode === "http" ? "http.js" : "stdio.js";
+const args = [join(__dirname, "..", "dist", script), ...process.argv.slice(3)];
+
+const child = spawn(process.execPath, args, {
+  stdio: "inherit",
+  env: process.env
+});
+
+child.on("exit", (code, signal) => {
+  if (signal) {
+    process.kill(process.pid, signal);
+    return;
+  }
+
+  process.exit(code ?? 0);
+});

@@ -1,0 +1,8 @@
+node_modules
+dist
+.xmcp
+coverage
+.env
+.env.*
+xmcp-env.d.ts
+

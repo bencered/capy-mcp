@@ -1,0 +1,34 @@
+import { z } from "zod";
+import { type InferSchema, type ToolMetadata } from "xmcp";
+
+import { getCapyClient } from "../lib/capy/client";
+import { cursorSchema } from "../lib/capy/tool-schemas";
+import { structured } from "../lib/capy/tool-helpers";
+
+export const schema = {
+  threadId: z.string().describe("Thread jam ID, for example jam_123."),
+  limit: z
+    .number()
+    .int()
+    .min(1)
+    .max(100)
+    .optional()
+    .describe("Maximum number of messages to return. Defaults to 50 in Capy."),
+  cursor: cursorSchema
+};
+
+export const metadata: ToolMetadata = {
+  name: "threads_list_messages",
+  description: "List messages in a captain thread.",
+  annotations: {
+    title: "List Thread Messages",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true
+  }
+};
+
+export default async function threadsListMessages({ threadId, ...query }: InferSchema<typeof schema>) {
+  const client = getCapyClient();
+  return structured(await client.listThreadMessages({ threadId }, query));
+}
