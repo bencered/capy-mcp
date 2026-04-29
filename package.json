@@ -1,0 +1,42 @@
+{
+  "name": "capy-xmcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for Capy projects, models, threads, and browser snapshots.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "directories": {
+    "bin": "bin"
+  },
+  "scripts": {
+    "dev": "xmcp dev",
+    "build": "xmcp build",
+    "prepack": "pnpm run build",
+    "start:http": "node dist/http.js",
+    "start:stdio": "node dist/stdio.js",
+    "test": "pnpm run build && vitest run",
+    "test:live": "RUN_LIVE_TESTS=1 vitest run test/live",
+    "gen:capy-types": "openapi-typescript https://docs.capy.ai/openapi.json -o src/lib/capy/generated/openapi.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "express": "^5.2.1",
+    "xmcp": "0.6.9",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "openapi-typescript": "^7.13.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.5"
+  }
+}
