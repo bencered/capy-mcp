@@ -24,6 +24,7 @@ describe("stdio transport", () => {
       expect(response.tools.some((tool) => tool.name === "threads_create_and_start")).toBe(true);
       expect(response.tools.some((tool) => tool.name === "tasks_get")).toBe(false);
       expect(response.tools.some((tool) => tool.name === "tasks_get_diff")).toBe(false);
+      expect(response.tools.some((tool) => tool.name.startsWith("browser_snapshots_"))).toBe(false);
     } finally {
       await client.close();
       await transport.close();

@@ -24,7 +24,6 @@ export interface ThreadCreateInput {
   buildSpeed?: CapySpeed;
   buildReasoning?: CapyReasoningConfig;
   repos?: ThreadRepoSelection[];
-  browserSnapshotIds?: string[];
   attachmentUrls?: string[];
 }
 
@@ -36,7 +35,6 @@ export interface ThreadSendMessageInput {
   buildModel?: string;
   buildSpeed?: CapySpeed;
   buildReasoning?: CapyReasoningConfig;
-  browserSnapshotIds?: string[];
   attachmentUrls?: string[];
 }
 
@@ -46,16 +44,6 @@ type JsonResponse<T> = T extends {
       content: {
         "application/json": infer Body;
       };
-    };
-  };
-}
-  ? Body
-  : never;
-
-type RequestBody<T> = T extends {
-  requestBody: {
-    content: {
-      "application/json": infer Body;
     };
   };
 }
@@ -102,14 +90,3 @@ export type SendMessageResponse = JsonResponse<operations["sendThreadMessage"]>;
 export type ListThreadMessagesPath = PathParams<operations["listThreadMessages"]>;
 export type ListThreadMessagesQuery = QueryParams<operations["listThreadMessages"]>;
 export type ListMessagesResponse = JsonResponse<operations["listThreadMessages"]>;
-
-export type ListBrowserSnapshotsPath = PathParams<operations["listBrowserSnapshots"]>;
-export type ListBrowserSnapshotsResponse = JsonResponse<operations["listBrowserSnapshots"]>;
-export type CreateBrowserSnapshotPath = PathParams<operations["createBrowserSnapshot"]>;
-export type CreateBrowserSnapshotBody = RequestBody<operations["createBrowserSnapshot"]>;
-export type BrowserSnapshotDetail = JsonResponse<operations["createBrowserSnapshot"]>;
-export type GetBrowserSnapshotPath = PathParams<operations["getBrowserSnapshot"]>;
-export type UpdateBrowserSnapshotPath = PathParams<operations["updateBrowserSnapshot"]>;
-export type UpdateBrowserSnapshotBody = RequestBody<operations["updateBrowserSnapshot"]>;
-export type DeleteBrowserSnapshotPath = PathParams<operations["deleteBrowserSnapshot"]>;
-export type DeleteBrowserSnapshotResponse = JsonResponse<operations["deleteBrowserSnapshot"]>;

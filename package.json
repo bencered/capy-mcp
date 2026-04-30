@@ -1,10 +1,13 @@
 {
-  "name": "capy-xmcp-server",
+  "name": "@bencered/capy-mcp",
   "version": "0.1.0",
-  "description": "MCP server for Capy projects, models, threads, and browser snapshots.",
-  "license": "UNLICENSED",
+  "description": "Unofficial MCP server for Capy projects, models, and threads.",
+  "license": "MIT",
   "engines": {
     "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "bin/",

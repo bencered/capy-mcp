@@ -1,18 +1,25 @@
-# Capy MCP Server
+# `@bencered/capy-mcp`
 
-MCP server for the supported Capy API surface:
+Unofficial MCP server for the supported Capy API surface.
+
+This package is not affiliated with, endorsed by, or maintained by Capy.
+
+Supported surface:
 
 - projects
 - models
 - threads
-- browser snapshots
 
-Task tools are intentionally not exposed. Use threads for interactive work.
+Task tools and browser snapshot tools are intentionally not exposed. Use threads for interactive work.
+
+## License
+
+MIT. See [LICENSE](./LICENSE).
 
 ## Install
 
 ```bash
-npm install -g capy-xmcp-server
+npm install -g @bencered/capy-mcp
 ```
 
 ## Requirements
@@ -29,13 +36,13 @@ For HTTP transport, also set:
 STDIO transport:
 
 ```bash
-CAPY_API_TOKEN=... capy-xmcp-server stdio
+CAPY_API_TOKEN=... capy-mcp stdio
 ```
 
 HTTP transport:
 
 ```bash
-CAPY_API_TOKEN=... XMCP_HTTP_API_KEY=... capy-xmcp-server http
+CAPY_API_TOKEN=... XMCP_HTTP_API_KEY=... capy-mcp http
 ```
 
 The HTTP server binds to `127.0.0.1:3001/mcp` by default.

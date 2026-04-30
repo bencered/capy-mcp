@@ -42,37 +42,4 @@ describe.skipIf(!runLiveTests || !process.env.CAPY_API_TOKEN || !liveProjectId)(
     const stopped = await client.stopThread({ threadId: thread.id });
     expect(stopped.id).toBe(thread.id);
   }, 60000);
-
-  it("creates, updates, retrieves, and deletes a browser snapshot", async () => {
-    const created = await client.createBrowserSnapshot(
-      { projectId: liveProjectId! },
-      {
-        name: `xmcp-live-${Date.now()}`,
-        storageState: {
-          cookies: [],
-          origins: []
-        }
-      }
-    );
-
-    expect(created.projectId).toBe(liveProjectId);
-
-    const updated = await client.updateBrowserSnapshot(
-      { projectId: liveProjectId!, snapshotId: created.id },
-      { name: `${created.name}-updated` }
-    );
-    expect(updated.id).toBe(created.id);
-
-    const fetched = await client.getBrowserSnapshot({
-      projectId: liveProjectId!,
-      snapshotId: created.id
-    });
-    expect(fetched.id).toBe(created.id);
-
-    const deleted = await client.deleteBrowserSnapshot({
-      projectId: liveProjectId!,
-      snapshotId: created.id
-    });
-    expect(deleted.success).toBe(true);
-  }, 60000);
 });

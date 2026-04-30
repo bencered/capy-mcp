@@ -6,7 +6,7 @@ const { join } = require("node:path");
 const mode = process.argv[2] ?? "stdio";
 
 if (mode !== "http" && mode !== "stdio") {
-  console.error("Usage: capy-xmcp-server [stdio|http]");
+  console.error("Usage: capy-mcp [stdio|http]");
   process.exit(1);
 }
 

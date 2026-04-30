@@ -21,10 +21,6 @@ export const schema = {
   buildSpeed: z.enum(speedValues).optional().describe("Optional Build speed setting."),
   buildReasoning: reasoningSchema.optional(),
   repos: z.array(repoSchema).optional().describe("Optional repository branch overrides."),
-  browserSnapshotIds: z
-    .array(z.string())
-    .optional()
-    .describe("Optional browser snapshot IDs to inject into the thread session."),
   attachmentUrls: z
     .array(z.string().url())
     .optional()

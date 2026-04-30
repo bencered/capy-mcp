@@ -1,8 +1,3 @@
-import * as browserSnapshotsCreate from "../src/tools/browser_snapshots_create";
-import * as browserSnapshotsDelete from "../src/tools/browser_snapshots_delete";
-import * as browserSnapshotsGet from "../src/tools/browser_snapshots_get";
-import * as browserSnapshotsList from "../src/tools/browser_snapshots_list";
-import * as browserSnapshotsUpdate from "../src/tools/browser_snapshots_update";
 import * as modelsList from "../src/tools/models_list";
 import * as projectsGet from "../src/tools/projects_get";
 import * as projectsList from "../src/tools/projects_list";
@@ -61,21 +56,6 @@ const threadResponse = {
   slackThreads: [],
   createdAt: "2026-04-29T00:00:00.000Z",
   updatedAt: "2026-04-29T00:00:00.000Z"
-};
-
-const browserSnapshotDetail = {
-  id: "snap_123",
-  projectId: "proj_123",
-  name: "Snapshot",
-  domains: ["example.com"],
-  isPrivate: false,
-  isDefault: false,
-  createdAt: "2026-04-29T00:00:00.000Z",
-  updatedAt: "2026-04-29T00:00:00.000Z",
-  storageState: {
-    cookies: [],
-    origins: []
-  }
 };
 
 const toolCases: ToolCase[] = [
@@ -194,10 +174,32 @@ const toolCases: ToolCase[] = [
   },
   {
     name: "threads_list_messages",
-    run: () => threadsListMessages.default({ threadId: "jam_123", limit: 2, cursor: "next_123" }),
-    path: "/v1/threads/jam_123/messages?limit=2&cursor=next_123",
+    run: () =>
+      threadsListMessages.default({
+        threadId: "jam_123",
+        limit: 2,
+        cursor: "next_123"
+      }),
+    path: "/v1/threads/jam_123/messages?cursor=next_123&limit=2",
     method: "GET",
-    response: { items: [], nextCursor: null, hasMore: false },
+    response: {
+      items: [
+        {
+          id: "msg_1",
+          source: "assistant",
+          content: "0123456789ABCDEFGHIJ",
+          createdAt: "2026-04-29T00:00:00.000Z"
+        },
+        {
+          id: "msg_2",
+          source: "user",
+          content: "short",
+          createdAt: "2026-04-29T00:01:00.000Z"
+        }
+      ],
+      nextCursor: null,
+      hasMore: false
+    },
     readOnly: true,
     destructive: false,
     idempotent: true,
@@ -213,91 +215,6 @@ const toolCases: ToolCase[] = [
     destructive: false,
     idempotent: false,
     metadata: threadsStop.metadata
-  },
-  {
-    name: "browser_snapshots_list",
-    run: () => browserSnapshotsList.default({ projectId: "proj_123" }),
-    path: "/v1/projects/proj_123/browser-snapshots",
-    method: "GET",
-    response: { items: [] },
-    readOnly: true,
-    destructive: false,
-    idempotent: true,
-    metadata: browserSnapshotsList.metadata
-  },
-  {
-    name: "browser_snapshots_get",
-    run: () => browserSnapshotsGet.default({ projectId: "proj_123", snapshotId: "snap_123" }),
-    path: "/v1/projects/proj_123/browser-snapshots/snap_123",
-    method: "GET",
-    response: browserSnapshotDetail,
-    readOnly: true,
-    destructive: false,
-    idempotent: true,
-    metadata: browserSnapshotsGet.metadata
-  },
-  {
-    name: "browser_snapshots_create",
-    run: () =>
-      browserSnapshotsCreate.default(
-        {
-          projectId: "proj_123",
-          name: "Snapshot",
-          storageState: {
-            cookies: [],
-            origins: []
-          }
-        } as unknown as Parameters<typeof browserSnapshotsCreate.default>[0]
-      ),
-    path: "/v1/projects/proj_123/browser-snapshots",
-    method: "POST",
-    body: {
-      name: "Snapshot",
-      storageState: {
-        cookies: [],
-        origins: []
-      }
-    },
-    response: browserSnapshotDetail,
-    readOnly: false,
-    destructive: false,
-    idempotent: false,
-    metadata: browserSnapshotsCreate.metadata
-  },
-  {
-    name: "browser_snapshots_update",
-    run: () =>
-      browserSnapshotsUpdate.default(
-        {
-          projectId: "proj_123",
-          snapshotId: "snap_123",
-          name: "Renamed"
-        } as Parameters<typeof browserSnapshotsUpdate.default>[0]
-      ),
-    path: "/v1/projects/proj_123/browser-snapshots/snap_123",
-    method: "PATCH",
-    body: {
-      name: "Renamed"
-    },
-    response: {
-      ...browserSnapshotDetail,
-      name: "Renamed"
-    },
-    readOnly: false,
-    destructive: false,
-    idempotent: false,
-    metadata: browserSnapshotsUpdate.metadata
-  },
-  {
-    name: "browser_snapshots_delete",
-    run: () => browserSnapshotsDelete.default({ projectId: "proj_123", snapshotId: "snap_123" }),
-    path: "/v1/projects/proj_123/browser-snapshots/snap_123",
-    method: "DELETE",
-    response: { success: true },
-    readOnly: false,
-    destructive: true,
-    idempotent: false,
-    metadata: browserSnapshotsDelete.metadata
   }
 ];
 
