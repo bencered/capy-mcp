@@ -9,7 +9,7 @@ const config: XmcpConfig = {
   template: {
     name: "Capy MCP Server",
     description:
-      "xmcp server exposing the supported Capy API for projects, models, threads, and browser snapshots. Use threads for interactive work; task endpoints are intentionally not exposed."
+      "xmcp server exposing the supported Capy API for projects, models, and threads. Use threads for interactive work; task and browser snapshot endpoints are intentionally not exposed."
   },
   http: {
     host: "127.0.0.1",

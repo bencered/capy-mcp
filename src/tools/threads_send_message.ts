@@ -20,10 +20,6 @@ export const schema = {
     .describe("Optional Build model ID. Call models_list first to discover valid model values."),
   buildSpeed: z.enum(speedValues).optional().describe("Optional Build speed setting."),
   buildReasoning: reasoningSchema.optional(),
-  browserSnapshotIds: z
-    .array(z.string())
-    .optional()
-    .describe("Optional browser snapshot IDs to inject into the thread session."),
   attachmentUrls: z
     .array(z.string().url())
     .optional()

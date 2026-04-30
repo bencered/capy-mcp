@@ -2,14 +2,8 @@ import { getCapyEnv, type CapyEnv } from "./env";
 import { parseCapyError } from "./error";
 import { serializeQuery, type QueryValue } from "./query";
 import type {
-  BrowserSnapshotDetail,
-  CreateBrowserSnapshotBody,
   CreateThreadResponse,
-  DeleteBrowserSnapshotResponse,
-  GetBrowserSnapshotPath,
   GetProjectPath,
-  ListBrowserSnapshotsPath,
-  ListBrowserSnapshotsResponse,
   ListMessagesResponse,
   ListModelsResponse,
   ListProjectsQuery,
@@ -25,9 +19,7 @@ import type {
   StopThreadResponse,
   ThreadCreateInput,
   ThreadSendMessageInput,
-  Thread,
-  UpdateBrowserSnapshotBody,
-  UpdateBrowserSnapshotPath
+  Thread
 } from "./types";
 
 interface RequestOptions {
@@ -108,49 +100,6 @@ export class CapyClient {
     return this.request({
       method: "POST",
       path: `/v1/threads/${encodeURIComponent(path.threadId)}/stop`
-    });
-  }
-
-  async listBrowserSnapshots(path: ListBrowserSnapshotsPath): Promise<ListBrowserSnapshotsResponse> {
-    return this.request({
-      method: "GET",
-      path: `/v1/projects/${encodeURIComponent(path.projectId)}/browser-snapshots`
-    });
-  }
-
-  async getBrowserSnapshot(path: GetBrowserSnapshotPath): Promise<BrowserSnapshotDetail> {
-    return this.request({
-      method: "GET",
-      path: `/v1/projects/${encodeURIComponent(path.projectId)}/browser-snapshots/${encodeURIComponent(path.snapshotId)}`
-    });
-  }
-
-  async createBrowserSnapshot(
-    path: ListBrowserSnapshotsPath,
-    body: CreateBrowserSnapshotBody
-  ): Promise<BrowserSnapshotDetail> {
-    return this.request({
-      method: "POST",
-      path: `/v1/projects/${encodeURIComponent(path.projectId)}/browser-snapshots`,
-      body
-    });
-  }
-
-  async updateBrowserSnapshot(
-    path: UpdateBrowserSnapshotPath,
-    body: UpdateBrowserSnapshotBody
-  ): Promise<BrowserSnapshotDetail> {
-    return this.request({
-      method: "PATCH",
-      path: `/v1/projects/${encodeURIComponent(path.projectId)}/browser-snapshots/${encodeURIComponent(path.snapshotId)}`,
-      body
-    });
-  }
-
-  async deleteBrowserSnapshot(path: GetBrowserSnapshotPath): Promise<DeleteBrowserSnapshotResponse> {
-    return this.request({
-      method: "DELETE",
-      path: `/v1/projects/${encodeURIComponent(path.projectId)}/browser-snapshots/${encodeURIComponent(path.snapshotId)}`
     });
   }
 
