@@ -22,27 +22,11 @@ MIT. See [LICENSE](./LICENSE).
 npm install -g @bencered/capy-mcp
 ```
 
+```bash
+claude mcp add capy --scope user --env CAPY_API_TOKEN=<your_token> -- npx -y @bencered/capy-mcp@0.1.1 stdio
+```
+
 ## Requirements
 
 - Node.js 20+
 - `CAPY_API_TOKEN` for the upstream Capy API
-
-For HTTP transport, also set:
-
-- `XMCP_HTTP_API_KEY`
-
-## Run
-
-STDIO transport:
-
-```bash
-CAPY_API_TOKEN=... capy-mcp stdio
-```
-
-HTTP transport:
-
-```bash
-CAPY_API_TOKEN=... XMCP_HTTP_API_KEY=... capy-mcp http
-```
-
-The HTTP server binds to `127.0.0.1:3001/mcp` by default.

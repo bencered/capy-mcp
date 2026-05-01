@@ -1,6 +1,6 @@
 {
   "name": "@bencered/capy-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Unofficial MCP server for Capy projects, models, and threads.",
   "license": "MIT",
   "repository": {
