@@ -6,7 +6,7 @@ import { structured } from "../lib/capy/tool-helpers";
 import { reasoningSchema, speedValues } from "../lib/capy/tool-schemas";
 
 export const schema = {
-  threadId: z.string().describe("Thread jam ID, for example jam_123."),
+  threadId: z.string().describe("Capy thread ID."),
   message: z.string().min(1).describe("Message to send to the existing thread."),
   model: z
     .string()
@@ -28,7 +28,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "threads_send_message",
-  description: "Send a message to an existing thread.",
+  description: "Send a follow-up message to an existing Capy thread to continue or redirect ongoing work.",
   annotations: {
     title: "Send Thread Message",
     readOnlyHint: false,

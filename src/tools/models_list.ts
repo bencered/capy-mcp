@@ -7,7 +7,7 @@ export const schema = {};
 
 export const metadata: ToolMetadata = {
   name: "models_list",
-  description: "List models available to the API.",
+  description: "List Capy model IDs available to this API token. Call this before choosing model or buildModel values for thread operations.",
   annotations: {
     title: "List Models",
     readOnlyHint: true,

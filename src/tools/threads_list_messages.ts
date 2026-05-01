@@ -9,7 +9,7 @@ const defaultLimit = 10;
 const maxLimit = 20;
 
 export const schema = {
-  threadId: z.string().describe("Thread jam ID, for example jam_123."),
+  threadId: z.string().describe("Capy thread ID."),
   limit: z
     .number()
     .int()
@@ -22,7 +22,8 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "threads_list_messages",
-  description: "List messages in a captain thread with pagination.",
+  description:
+    "List messages in a Capy thread with pagination. Read this incrementally in small pages rather than requesting a large transcript at once.",
   annotations: {
     title: "List Thread Messages",
     readOnlyHint: true,

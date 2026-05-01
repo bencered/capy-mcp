@@ -10,7 +10,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "projects_get",
-  description: "Get a single project.",
+  description: "Get one Capy project. Projects are the top-level container that own threads.",
   annotations: {
     title: "Get Project",
     readOnlyHint: true,
