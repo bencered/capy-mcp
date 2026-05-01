@@ -9,7 +9,7 @@ const config: XmcpConfig = {
   template: {
     name: "Capy MCP Server",
     description:
-      "xmcp server exposing the supported Capy API for projects, models, and threads. Use threads for interactive work; task and browser snapshot endpoints are intentionally not exposed."
+      "Unofficial MCP server for Capy, an agent execution platform for software projects. Projects are the top-level workspace. Threads are the primary interactive execution unit: create a thread to start work, send messages to continue existing work, inspect thread state, and page through thread messages incrementally. Call models_list before choosing model or buildModel values. threads_list_messages is paginated and should be read in small pages. Task and browser snapshot endpoints are intentionally not exposed."
   },
   http: {
     host: "127.0.0.1",

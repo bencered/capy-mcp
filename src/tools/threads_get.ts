@@ -5,12 +5,12 @@ import { getCapyClient } from "../lib/capy/client";
 import { structured } from "../lib/capy/tool-helpers";
 
 export const schema = {
-  threadId: z.string().describe("Thread jam ID, for example jam_123.")
+  threadId: z.string().describe("Capy thread ID.")
 };
 
 export const metadata: ToolMetadata = {
   name: "threads_get",
-  description: "Get a single captain thread.",
+  description: "Get the current state of a single Capy thread, including status and linked work artifacts.",
   annotations: {
     title: "Get Thread",
     readOnlyHint: true,

@@ -6,7 +6,7 @@ import { structured } from "../lib/capy/tool-helpers";
 import { reasoningSchema, repoSchema, speedValues } from "../lib/capy/tool-schemas";
 
 export const schema = {
-  projectId: z.string().describe("Project ID that owns the new captain thread."),
+  projectId: z.string().describe("Capy project ID that will own the new thread."),
   prompt: z.string().min(1).describe("Prompt to send when creating and starting the thread."),
   model: z
     .string()
@@ -29,7 +29,8 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "threads_create_and_start",
-  description: "Create a new captain thread and immediately start execution.",
+  description:
+    "Create a new Capy thread and immediately start execution. Use this when beginning a new unit of work inside a project.",
   annotations: {
     title: "Create And Start Thread",
     readOnlyHint: false,

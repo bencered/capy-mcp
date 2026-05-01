@@ -11,7 +11,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "projects_list",
-  description: "List projects available to the API token.",
+  description: "List Capy projects available to the API token. Use this to discover which project should own a new or existing thread.",
   annotations: {
     title: "List Projects",
     readOnlyHint: true,

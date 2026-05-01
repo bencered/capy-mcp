@@ -6,7 +6,7 @@ import { cursorSchema, limitSchema, threadStatusValues } from "../lib/capy/tool-
 import { structured } from "../lib/capy/tool-helpers";
 
 export const schema = {
-  projectId: z.string().describe("Project ID whose captain threads should be listed."),
+  projectId: z.string().describe("Capy project ID whose threads should be listed."),
   limit: limitSchema,
   cursor: cursorSchema,
   status: z.enum(threadStatusValues).optional().describe("Optional thread status filter."),
@@ -17,7 +17,7 @@ export const schema = {
 
 export const metadata: ToolMetadata = {
   name: "threads_list",
-  description: "List captain threads for a project.",
+  description: "List Capy threads for a project. Use this to discover existing work before creating a new thread.",
   annotations: {
     title: "List Threads",
     readOnlyHint: true,
